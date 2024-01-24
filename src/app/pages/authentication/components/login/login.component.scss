@@ -1,0 +1,18 @@
+.login-form{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .login-card{
+    width: 450px;
+    height: 210px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .submit-button{
+    display: flex;
+    justify-content: center;
+  }
+}

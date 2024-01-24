@@ -1,0 +1,67 @@
+<!-- <div class="admin__pageheader">
+  <nz-page-header [nzGhost]="false">
+    <nz-page-header-title>Users</nz-page-header-title>
+    <nz-page-header-extra>
+      <nz-space>
+        <button *nzSpaceItem nz-button nzType="primary">Add Moderator</button>
+      </nz-space>
+    </nz-page-header-extra>
+  </nz-page-header>
+</div> -->
+<div class="admin">
+  <div nz-row nzJustify="space-evenly">
+    <div nz-col nzSpan="12">
+      <h2 nz-typography>Users</h2>
+    </div>
+    <div nz-col nzSpan="12">
+      <div class="admin__addmoderator">
+        <button  nz-button nzType="primary" (click)="addModerator()">Add Moderator</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="admin__userstable">
+  <div nz-row>
+    <div nz-col nzSpan="24" nzFlex="auto">
+      <nz-table
+      #rowSelectionTable
+      nzShowPagination
+      nzShowSizeChanger
+      [nzData]="usersData"
+      [nzScroll]="{ y: '630px' }"
+    >
+      <thead>
+        <tr>
+          <th>Approve / Block</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Is Approved</th>
+          <th>Signup Date</th>
+          <th>User Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of rowSelectionTable.data">
+          <td
+            [nzChecked]="data.isApproved"
+            (nzCheckedChange)="onItemChecked(data.id, $event)"
+          ></td>
+          <td>{{ data.firstName }}</td>
+          <td>{{ data.lastName }}</td>
+          <td>{{ data.isApproved ? 'Yes' : 'No' }}</td>
+          <td>{{ data.dateJoined}}</td>
+          <td>{{ data.userTypeDisplay}}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+    </div>
+  </div>
+  </div>
+
+</div>
+
+
+
+
+

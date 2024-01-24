@@ -1,0 +1,56 @@
+
+
+<form nz-form [formGroup]="addModeratorForm" [nzLayout]="'vertical'">
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>First Name</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="firstNameErrorTpl">
+          <input nz-input formControlName="firstName" placeholder="First Name" type="text" />
+          <ng-template #firstNameErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('minlength')">Minimum Five characters are required</ng-container>
+            <ng-container *ngIf="control.hasError('required') || control.touched">Please input First Name</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>Last Name</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="lastNameErrorTpl">
+          <input nz-input formControlName="lastName" placeholder="Last Name" type="text" />
+          <ng-template #lastNameErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('minlength')">Minimum Five characters are required</ng-container>
+            <ng-container *ngIf="control.hasError('required') || control.touched">Please input Last Name</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>E-mail</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="emailErrorTpl">
+          <input nz-input formControlName="email" placeholder="email" type="email" />
+          <ng-template #emailErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('email')">The input is not valid E-mail!</ng-container>
+            <ng-container *ngIf="control.hasError('required')">Please input your E-mail!</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="12">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>Password</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="passwordErrorTpl">
+          <input nz-input type="password" formControlName="password" placeholder="Enter password" />
+          <ng-template #passwordErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">Please enter password!</ng-container>
+            <ng-container *ngIf="control.hasError('minlength')">Minimum Five characters are required</ng-container>
+            <!-- <ng-container *ngIf="control.hasError('confirm')">Password is inconsistent!</ng-container> -->
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+</form>

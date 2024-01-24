@@ -1,0 +1,84 @@
+
+<div class="forum">
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <h2 nz-typography>Forum</h2>
+    </div>
+    <div nz-col nzSpan="12">
+      <div class="forum__addtopic">
+        <button  nz-button nzType="primary" (click)="addTopic()" *ngIf="loggedInuser.userType === normalUserRole">Add Topic</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="topics-main">
+  <nz-collapse  [nzBordered]="true">
+    <nz-collapse-panel
+      *ngFor="let panel of topics$ | async"
+      [nzHeader]="panel.title"
+      [nzActive]="panel.active"
+    >
+
+      <p style="margin:0;">
+       {{panel.content}}
+      </p>
+
+      <a nz-typography (click)="hideShowComments(i)">{{panel.commentsCount}} Comments</a>
+      <a
+      class="delete-topic"
+      nz-popconfirm
+      nzPopconfirmTitle="Do you want to delete Topic?"
+      (nzOnConfirm)="deleteTopic(panel.id)"
+      *ngIf="loggedInuser.userType === moderatorUserRole"
+      >
+      Delete Topic</a>
+      <nz-comment>
+        <ng-container>
+        <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="user.avatar"></nz-avatar>
+
+          <nz-comment-content *ngIf="loggedInuser.userType === normalUserRole">
+            <nz-form-item>
+              <textarea [(ngModel)]="inputValue" nz-input rows="2"></textarea>
+            </nz-form-item>
+            <nz-form-item>
+              <button nz-button nzType="primary"  [disabled]="!inputValue" (keyup)="captureEvent($event)" (click)="handleSubmit(panel.id, $event)">
+                Add Comment
+              </button>
+            </nz-form-item>
+          </nz-comment-content>
+        </ng-container>
+
+
+        <nz-list *ngIf="panel.comments.length" [nzDataSource]="panel.comments" [nzRenderItem]="item" [nzItemLayout]="'horizontal'">
+          <ng-template #item let-item>
+            <nz-comment [nzAuthor]="item.user.firstName">
+              <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="item.avatar"></nz-avatar>
+              <nz-comment-content>
+                <p>{{ item.content }}</p>
+                <a
+                nz-popconfirm
+                nzPopconfirmTitle="Do you want to delete Comment?"
+                (nzOnConfirm)="deleteComment(item.id)"
+                *ngIf="loggedInuser.userType === moderatorUserRole"
+                >
+                Delete Comment</a>
+              </nz-comment-content>
+            </nz-comment>
+          </ng-template>
+        </nz-list>
+      </nz-comment>
+    </nz-collapse-panel>
+  </nz-collapse>
+
+
+
+
+</div>
+
+
+
+
+
+
+

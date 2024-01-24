@@ -1,0 +1,19 @@
+.banner-image{
+  background-image: url('../../../assets/images/filteration.webp');
+  height: 922px;
+  width: 990px;
+  object-fit: contain;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 8px;
+  max-width: 100%;
+  transform: scale(1.05,1.1);
+}
+
+.auth-main{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 27px;
+    grid-auto-rows: minmax(100px, auto);
+}

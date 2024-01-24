@@ -1,0 +1,27 @@
+
+
+.forum{
+    &__addtopic{
+      display: flex;
+      justify-content: end;
+    }
+
+    .topic-content-card{
+      display: flex;
+      justify-content: center;
+    }
+
+    .topics-comments{
+      margin-top: 20px;
+      padding: 12px;
+    }
+
+    .topics-main{
+      height: 783px;
+      overflow-y: auto;
+    }
+
+    .delete-topic{
+      margin-left: 20px;
+    }
+}

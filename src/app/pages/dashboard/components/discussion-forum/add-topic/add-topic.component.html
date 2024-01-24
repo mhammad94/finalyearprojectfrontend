@@ -1,0 +1,30 @@
+
+
+<form nz-form [formGroup]="addTopicForm">
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="24">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>Topic Title</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="titleErrorTpl">
+          <input nz-input formControlName="title"  placeholder="Topic Title" type="text" />
+          <ng-template #titleErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required') || control.touched">Please input Title</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="24">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>Topic Content</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="contentErrorTpl">
+          <textarea rows="10" nz-input formControlName="content"></textarea>
+          <ng-template #contentErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">Content required</ng-container>
+
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+  </div>
+</form>

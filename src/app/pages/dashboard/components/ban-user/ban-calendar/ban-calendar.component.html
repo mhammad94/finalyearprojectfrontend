@@ -1,0 +1,26 @@
+
+<div class="ban-calendars">
+  <div class="ban-start">
+    <h2 nz-typography>Ban Start</h2>
+    <div [ngStyle]="{ width: '300px', border: '1px solid #d9d9d9', borderRadius: '4px' }">
+      <nz-calendar
+      [(ngModel)]="banStartDate"
+      [nzDisabledDate]="banStartDisabledDate"
+      [nzFullscreen]="false"
+      ></nz-calendar>
+    </div>
+  </div>
+
+  <div class="ban-start">
+    <h2 nz-typography>Ban End</h2>
+    <div [ngStyle]="{ width: '300px', border: '1px solid #d9d9d9', borderRadius: '4px' }">
+      <nz-calendar
+        [(ngModel)]="banEndDate"
+        [nzFullscreen]="false"
+        [nzDisabledDate]="banEndDisabledDate"
+      ></nz-calendar>
+    </div>
+  </div>
+</div>
+
+

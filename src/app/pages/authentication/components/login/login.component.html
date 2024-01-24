@@ -1,0 +1,37 @@
+
+<div class="login-form">
+  <nz-card class="login-card">
+    <form nz-form [formGroup]="loginForm">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>E-mail</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="emailErrorTpl">
+          <nz-input-group nzPrefixIcon="user">
+            <input nz-input formControlName="email" placeholder="email" type="email" />
+          </nz-input-group>
+          <ng-template #emailErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('email')">The input is not valid E-mail!</ng-container>
+            <ng-container *ngIf="control.hasError('required')">Please input your E-mail!</ng-container>
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="5" nzRequired>Password</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="passwordErrorTpl">
+          <nz-input-group nzPrefixIcon="lock">
+            <input nz-input type="password" formControlName="password" placeholder="Enter password" />
+          </nz-input-group>
+          <ng-template #passwordErrorTpl let-control>
+            <ng-container *ngIf="control.hasError('required')">Please enter password!</ng-container>
+            <ng-container *ngIf="control.hasError('minlength')">Minimum Five characters are required</ng-container>
+            <!-- <ng-container *ngIf="control.hasError('confirm')">Password is inconsistent!</ng-container> -->
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <div class="submit-button">
+        <button nz-button (click)="login()"  class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+      </div>
+      <a [routerLink]="['/auth/signup']">Signup now!</a>
+    </form>
+  </nz-card>
+</div>
+

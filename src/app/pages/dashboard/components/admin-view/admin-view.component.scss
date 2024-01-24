@@ -1,0 +1,16 @@
+
+.admin{
+
+    &__addmoderator{
+      display: flex;
+      justify-content: end;
+    }
+
+    &__userstable{
+      margin-top: 30px;
+
+      .send-request{
+        margin-bottom: 20px;
+      }
+    }
+}
