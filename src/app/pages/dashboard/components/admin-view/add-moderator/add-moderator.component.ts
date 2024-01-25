@@ -18,6 +18,8 @@ export class AddModeratorComponent {
     email:new FormControl('', [Validators.required, Validators.email]),
     password:new FormControl('',[Validators.required, Validators.minLength(5)])
   })
+
+
   veriyData(){
     return this.addModeratorForm.value
 

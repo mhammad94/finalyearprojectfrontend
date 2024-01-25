@@ -43,9 +43,9 @@
         </nz-form-control>
       </nz-form-item>
       <div class="submit-button">
-        <button (click)="signUp()" nz-button  class="login-form-button login-form-margin" [nzType]="'primary'">Sign Up</button>
+        <button (click)="signUp()" [disabled]="!signupForm.valid" nz-button  class="login-form-button login-form-margin" [nzType]="'primary'">Sign Up</button>
       </div>
     </form>
-
+    <a [routerLink]="['/auth/login']">Login</a>
   </nz-card>
 </div>

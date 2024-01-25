@@ -1,0 +1,26 @@
+
+<div class="add-keyword">
+  <input nz-input placeholder="Add Keyword" [(ngModel)]="keyWordValue" type="text" />
+  <div class="add-keyword-button">
+    <button nz-button nzType="primary" (click)="addKeyWord()">Add</button>
+  </div>
+
+</div>
+
+
+<nz-table #basicTable [nzData]="filterKeyWords | async">
+  <thead>
+    <tr>
+      <th>Keyword</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data">
+      <td>{{data.keyWord}}</td>
+      <td>
+        <button nz-button nzType="primary" (click)="deleteKeyWord(data.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

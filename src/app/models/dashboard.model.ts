@@ -7,6 +7,7 @@ import { BaseResponse } from "./baseresponse.models";
 
 export interface TopicsResponse extends BaseResponse{
   topics:Topic[],
+  filterKeywords:FilterKeyWords[]
 }
 
 
@@ -25,4 +26,14 @@ export interface Comment{
   id:string,
   content:string,
   user:User
+}
+
+export interface FilterKeyWords {
+  id:string,
+  keyWord:string,
+}
+
+
+export interface FilterKeyWordsResponse extends BaseResponse{
+  filterKeywords:FilterKeyWords[]
 }

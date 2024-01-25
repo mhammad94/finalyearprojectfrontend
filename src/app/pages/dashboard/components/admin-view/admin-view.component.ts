@@ -45,10 +45,19 @@ export class AdminViewComponent implements OnInit {
 
       return new Promise((resolve, reject) => {
           setTimeout(() => {
-            let formData = data.veriyData()
-            this.store.dispatch(registerModerator(formData))
-            resolve()
-          },3000)
+            if(data.addModeratorForm.valid){
+              let formData = data.veriyData()
+              this.store.dispatch(registerModerator(formData))
+              resolve()
+            }else{
+              data.addModeratorForm.markAllAsTouched()
+              data.addModeratorForm.markAsDirty()
+              data.addModeratorForm.markAsTouched()
+              data.addModeratorForm.markAsPending()
+              reject()
+            }
+
+          },1000)
       })
      }
 

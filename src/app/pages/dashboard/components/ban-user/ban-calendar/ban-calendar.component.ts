@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import moment from 'moment';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 
 @Component({
@@ -9,21 +10,19 @@ import moment from 'moment';
 })
 export class BanCalendarComponent {
 
-  constructor(){}
+  constructor(private message: NzMessageService){}
 
   banStartDate: Date | null = new Date();
   banEndDate: Date | null = new Date();
   banStartDisabledDate = (current: Date): boolean => {
-    // Disable dates before today
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0 for accurate date comparison
+    today.setHours(0, 0, 0, 0);
     return current < today;;
   };
 
   banEndDisabledDate = (current: Date): boolean => {
-    // Disable dates before today
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0 for accurate date comparison
+    today.setHours(0, 0, 0, 0);
     return current < today;;
   };
 
@@ -32,6 +31,7 @@ export class BanCalendarComponent {
     let banEndDate = moment(this.banEndDate)
 
     if(banEndDate.isBefore(banStartDate)){
+      this.message.error("Ban Start Date Should be greater than Ban End Date")
       return false
     }else{
       return true

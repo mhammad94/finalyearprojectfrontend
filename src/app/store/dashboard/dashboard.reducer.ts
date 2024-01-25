@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { User } from "../../models/auth.models";
-import {  DashboardActionTypes, getAllTopicsSuccess, getNormalUsersSucess, getUsersForApproval, getUsersForApprovalFailure, getUsersForApprovalSucess } from "./dashboard.actions";
-import { Topic } from "../../models/dashboard.model";
+import {  DashboardActionTypes, getAllFilterKeyWordsSuccess, getAllTopicsSuccess, getNormalUsersSucess, getUsersForApproval, getUsersForApprovalFailure, getUsersForApprovalSucess } from "./dashboard.actions";
+import { FilterKeyWords, Topic } from "../../models/dashboard.model";
 
 
 
@@ -10,13 +10,15 @@ export interface DashboardState{
   usersForApproval: User[] | []
   topics:Topic[] | []
   normalUsers:User[] | []
+  filterKeyWords:FilterKeyWords[] | [] | string[]
 }
 
 
 export const initialState:DashboardState = {
   usersForApproval:[],
   topics:[],
-  normalUsers:[]
+  normalUsers:[],
+  filterKeyWords:[]
 }
 
 
@@ -32,13 +34,20 @@ const _dashboardReducer = createReducer(
   on(getAllTopicsSuccess, (state, action) => {
     return {
       ...state,
-      topics:action.data.topics
+      topics:action.data.topics,
+      filterKeyWords:action.data.filterKeywords
     }
   }),
   on(getNormalUsersSucess, (state, action) => {
     return {
       ...state,
       normalUsers:action.data.users
+    }
+  }),
+  on(getAllFilterKeyWordsSuccess, (state, action) => {
+    return{
+      ...state,
+      filterKeyWords:action.data.filterKeywords
     }
   })
 

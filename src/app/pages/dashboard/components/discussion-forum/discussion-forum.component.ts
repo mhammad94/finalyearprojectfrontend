@@ -19,6 +19,7 @@ import { UserTypesEnum } from '../../../../enums/user.enums';
 export class DiscussionForumComponent implements OnInit {
 
   topics$:Observable<Topic[]> = new Observable<Topic[]>();
+  topics:Topic[];
   user$:Observable<User> = new Observable<User>();
   loggedInuser:User;
   showComments:boolean = false;
@@ -36,7 +37,9 @@ export class DiscussionForumComponent implements OnInit {
   };
   inputValue = '';
 
-
+  pannelClick(pannelId){
+      localStorage.setItem('clickedPannel', pannelId)
+  }
 
   handleSubmit(topicId:any, event): void {
     this.submitting = true;
@@ -57,11 +60,11 @@ export class DiscussionForumComponent implements OnInit {
 
 
     ngOnInit(): void {
-      debugger
       this.store.dispatch(getAllTopics())
       this.topics$ = this.store.select(getAllTopicsState)
       this.user$ = this.store.select(getLoggedInUser)
       this.topics$.subscribe(res => {
+        this.topics = res
       })
 
       this.user$.subscribe(res => {
@@ -78,10 +81,15 @@ export class DiscussionForumComponent implements OnInit {
      nzOnOk:(data) => {
        return new Promise((resolve, reject) => {
            setTimeout(() => {
-             let formData = data.sendFormData()
-             this.store.dispatch(addNewTopic(formData))
-             resolve()
-           },3000)
+             if(data.isFormValid()){
+              let formData = data.sendFormData()
+              this.store.dispatch(addNewTopic(formData))
+              resolve()
+             }else{
+              reject()
+             }
+
+           },1000)
        })
       }
 

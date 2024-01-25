@@ -6,6 +6,7 @@ import { DiscussionForumComponent } from './components/discussion-forum/discussi
 import { authGuard } from '../../guard/auth.guard';
 import { permissionGuard } from '../../guard/permission.guard';
 import { BanUserComponent } from './components/ban-user/ban-user.component';
+import { KeywordsFilterComponent } from './components/admin-view/keywords-filter/keywords-filter.component';
 
 const routes: Routes = [{ path: '', component: DashboardComponent,
 children:[
@@ -22,6 +23,11 @@ children:[
 {
   path:'banuser',
   component:BanUserComponent,
+  canActivate:[permissionGuard]
+},
+{
+  path:'filterkeywords',
+  component:KeywordsFilterComponent,
   canActivate:[permissionGuard]
 }
 ] }];

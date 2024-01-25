@@ -17,6 +17,7 @@ export class AuthService {
 
     return this.apollo.mutate({
       mutation:loginMutation,
+      fetchPolicy:'network-only',
       variables:{
         email:email,
         password:password

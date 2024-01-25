@@ -12,6 +12,7 @@ import { AddTopicComponent } from './components/discussion-forum/add-topic/add-t
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { BanUserComponent } from './components/ban-user/ban-user.component';
 import { BanCalendarComponent } from './components/ban-user/ban-calendar/ban-calendar.component';
+import { KeywordsFilterComponent } from './components/admin-view/keywords-filter/keywords-filter.component';
 
 
 
@@ -23,7 +24,8 @@ import { BanCalendarComponent } from './components/ban-user/ban-calendar/ban-cal
     DiscussionForumComponent,
     AddTopicComponent,
     BanUserComponent,
-    BanCalendarComponent
+    BanCalendarComponent,
+    KeywordsFilterComponent
   ],
   imports: [
     CommonModule,

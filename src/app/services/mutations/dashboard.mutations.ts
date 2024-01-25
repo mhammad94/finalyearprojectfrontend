@@ -42,3 +42,25 @@ mutation DeleteTopic($topicId:UUID!){
   }
 }
 `
+
+
+export const addFilterKeyWord = gql`
+mutation AddKeyWord($keyword:String!){
+  addKeyWord(keyword:$keyword){
+    ok,
+    errors,
+    successMessage
+  }
+
+}
+`
+
+export const deleteKeyWord = gql`
+mutation DeleteKeyWord($keywordId:UUID!){
+  deleteKeyWord(keywordId:$keywordId){
+    ok,
+    errors,
+    successMessage
+  }
+}
+`

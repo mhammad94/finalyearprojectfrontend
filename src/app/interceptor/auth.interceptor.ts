@@ -11,12 +11,15 @@ import { logout } from "../store/authentication/auth.actions";
 export const authInterceptor:HttpInterceptorFn = (req: HttpRequest<unknown>,  next: HttpHandlerFn) => {
   debugger
   let appState = inject(Store<AppState>)
-  let token = localStorage.getItem('token')
+  let token;
 
-  // appState.select(getAuthState).subscribe(res => {
-  //   token = res?.auth?.login?.token
-  // })
-  if(token === (undefined || null)){
+  appState.select(getLogin).subscribe(res => {
+
+    token = res?.token
+  })
+
+
+  if((token === undefined) || (token === null)){
     token = ''
   }
 

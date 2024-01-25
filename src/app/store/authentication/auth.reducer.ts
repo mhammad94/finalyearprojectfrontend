@@ -1,6 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { login, loginFailure, loginSuccess, logoutSuccess } from "./auth.actions";
 import { LoginResponse } from "../../models/auth.models";
+import { getLogin } from "./auth.selector";
 
 
 
@@ -33,6 +34,7 @@ const _authReducer = createReducer(
   }),
 
   on(logoutSuccess, (state, action) => {
+
     return{
       ...state,
       login:undefined

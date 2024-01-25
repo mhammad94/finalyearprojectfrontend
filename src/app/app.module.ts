@@ -62,9 +62,20 @@ registerLocaleData(en);
       useFactory(httpLink:HttpLink){
         return {
           cache: new InMemoryCache(),
+          defaultOptions:{
+            watchQuery: {
+              fetchPolicy: 'no-cache',
+              errorPolicy: 'ignore'
+            },
+            query: {
+              fetchPolicy: 'no-cache',
+              errorPolicy: 'ignore'
+            }
+          },
           link:httpLink.create({
             uri:'http://localhost:8000/graphql'
           }),
+
 
         }
       },

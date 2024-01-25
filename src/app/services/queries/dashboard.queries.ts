@@ -7,6 +7,7 @@ query GetAllTopics{
     ok,
     errors,
     successMessage,
+    filterKeywords,
     topics{
       id,
       createdAt,
@@ -27,6 +28,21 @@ query GetAllTopics{
           lastName
         }
       }
+    }
+  }
+}
+`
+
+
+export const gettAllFilterKeyWordsQuery =  gql`
+query GetAllFilterKeyWords{
+  getAllFilterKeywords{
+    ok,
+    errors,
+    successMessage,
+    filterKeywords{
+      id,
+      keyWord
     }
   }
 }

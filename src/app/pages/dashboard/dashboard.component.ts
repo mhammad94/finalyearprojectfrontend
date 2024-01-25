@@ -18,14 +18,18 @@ export class DashboardComponent {
   getUserSubscription$:Subscription = new Subscription();
   getuser$:Observable<User> = new Observable<User>();
   getuserRoutes$:Observable<UserRoutes[]> = new Observable<UserRoutes[]>();
+  user:User
+  firstLetterUser:string;
 
-  adminRoutes = [
-    {title:'Users', route:'/dashboard/admin'}
-  ]
   isCollapsed = true;
   constructor(private store:Store<AppState>, private router:Router){
    this.getuser$ = this.store.select(getLoggedInUser)
    this.getuserRoutes$ = this.store.select(getLoggedInUserRoutes)
+
+  this.getuser$.subscribe(res => {
+    this.user= res
+    this.firstLetterUser = this.user.firstName.split('')[0]
+  })
   }
 
   naviagteOnClick(route:any){
@@ -37,9 +41,6 @@ export class DashboardComponent {
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-
   }
 
 }

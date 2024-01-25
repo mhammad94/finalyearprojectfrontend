@@ -8,8 +8,6 @@ export const getAuthState = createFeatureSelector<AppState>('auth');
 
 
 export const getLogin = createSelector(getAuthState, (state:any) => {
-  console.log("called")
-  console.log(state)
   if(state.login !== undefined){
     return state.login
   }else{

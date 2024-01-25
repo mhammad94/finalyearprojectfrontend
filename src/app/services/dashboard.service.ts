@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { getUsersForApprovalQuery } from './queries/auth.quries';
 import { map } from 'rxjs';
-import { deleteComment, deleteTopic, newCommentMutation, newTopicMutation } from './mutations/dashboard.mutations';
-import { getAllTopicsQuery } from './queries/dashboard.queries';
+import { addFilterKeyWord, deleteComment, deleteKeyWord, deleteTopic, newCommentMutation, newTopicMutation } from './mutations/dashboard.mutations';
+import { getAllTopicsQuery, gettAllFilterKeyWordsQuery } from './queries/dashboard.queries';
 
 @Injectable({
   providedIn: 'root'
@@ -84,5 +84,39 @@ export class DashboardService {
       refetchQueries:[getAllTopicsQuery]
     })
     .pipe(map((result:any) => result.data.deleteTopic))
+  }
+
+
+  addNewKeyWord(payload){
+    const { keyword } = payload
+    return this.apollo.mutate({
+      mutation:addFilterKeyWord,
+      variables:{
+        keyword:keyword
+      },
+      refetchQueries:[gettAllFilterKeyWordsQuery]
+    })
+    .pipe(map((result:any) => result.data.addKeyWord))
+  }
+
+  deleteKeyWord(payload){
+    const { keywordId } = payload
+    return this.apollo.mutate({
+      mutation:deleteKeyWord,
+      variables:{
+        keywordId:keywordId
+      },
+      refetchQueries:[gettAllFilterKeyWordsQuery]
+    })
+    .pipe(map((result:any) => result.data.deleteKeyWord))
+  }
+
+  getAllFilterKeyWords(){
+    return this.apollo.watchQuery({
+      query:gettAllFilterKeyWordsQuery,
+      fetchPolicy: 'network-only',
+    })
+    .valueChanges
+    .pipe(map((result:any) => result.data.getAllFilterKeywords))
   }
 }

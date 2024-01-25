@@ -7,6 +7,7 @@ import { NzMessageService } from "ng-zorro-antd/message";
 import { Router } from "@angular/router";
 import { RegisterUserProps } from "../../models/auth.models";
 import { UserTypesEnum } from "../../enums/user.enums";
+import { getLogin } from "./auth.selector";
 
 
 @Injectable()
@@ -136,6 +137,7 @@ export class AuthEffects{
       ofType(logoutSuccess),
       tap((action) => {
         localStorage.clear()
+        getLogin.release()
         localStorage.setItem('previousRoute', '/auth/login')
         this.router.navigateByUrl('/auth/login')
       })
@@ -174,6 +176,7 @@ export class AuthEffects{
       tap((action:any) => {
         if(action.ok){
           this.message.success(action.successMessage)
+          this.router.navigateByUrl('/auth/login')
         }
 
       })
